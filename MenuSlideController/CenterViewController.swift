@@ -24,4 +24,9 @@ class CenterViewController: UIViewController {
     @IBAction func toggleLeft(_ sender: Any) {
         slideMenuController?.toggleLeft()
     }
+    
+    @IBAction func toggleRight(_ sender: Any) {
+        slideMenuController?.toggleRight()
+    }
+
 }

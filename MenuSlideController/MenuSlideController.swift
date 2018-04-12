@@ -90,6 +90,17 @@ open class MenuSlideController: UIViewController {
         }
     }
     
+    func toggleRight() {
+        currentState == .rightPanelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
+    }
+    
+    func animateRightPanel(widthOfSidePanel: CGFloat) {
+        animateCenterPanelXPosition(targetPosition: -widthOfSidePanel) { (success) in
+            self.currentState = self.currentState == .rightPanelExpanded ? .rightPanelCollapsed : .rightPanelExpanded
+        }
+    }
+
+    
     func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.centerNavigationController.view.frame.origin.x = targetPosition

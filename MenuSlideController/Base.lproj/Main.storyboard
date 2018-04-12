@@ -98,6 +98,12 @@
                                 <action selector="toggleLeft:" destination="iOo-Jn-jsD" id="jg1-mo-MsH"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="HVr-Vo-I99">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="toggleRight:" destination="iOo-Jn-jsD" id="Shk-dE-IoQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XIQ-K4-ScJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
