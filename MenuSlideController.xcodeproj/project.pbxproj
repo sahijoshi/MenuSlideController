@@ -12,6 +12,11 @@
 		32C8B357206DFA660038D05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B356206DFA660038D05B /* Assets.xcassets */; };
 		32C8B35A206DFA660038D05B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B358206DFA660038D05B /* LaunchScreen.storyboard */; };
 		32C8B362206DFA7F0038D05B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B361206DFA7F0038D05B /* README.md */; };
+		32C8B364206E03070038D05B /* MenuSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8B363206E03070038D05B /* MenuSlideController.swift */; };
+		32DAB610207B3A0200D62468 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB60F207B3A0200D62468 /* CenterViewController.swift */; };
+		32DAB616207B3A3500D62468 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB615207B3A3500D62468 /* TopViewController.swift */; };
+		32DAB618207B4BBF00D62468 /* LeftTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB617207B4BBF00D62468 /* LeftTableViewController.swift */; };
+		32DAB61A207B4BCC00D62468 /* RightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB619207B4BCC00D62468 /* RightTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		32C8B359206DFA660038D05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C8B35B206DFA660038D05B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32C8B361206DFA7F0038D05B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		32C8B363206E03070038D05B /* MenuSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlideController.swift; sourceTree = "<group>"; };
+		32DAB60F207B3A0200D62468 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		32DAB615207B3A3500D62468 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		32DAB617207B4BBF00D62468 /* LeftTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTableViewController.swift; sourceTree = "<group>"; };
+		32DAB619207B4BCC00D62468 /* RightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +66,15 @@
 			isa = PBXGroup;
 			children = (
 				32C8B34F206DFA660038D05B /* AppDelegate.swift */,
+				32C8B363206E03070038D05B /* MenuSlideController.swift */,
 				32C8B353206DFA660038D05B /* Main.storyboard */,
 				32C8B356206DFA660038D05B /* Assets.xcassets */,
 				32C8B358206DFA660038D05B /* LaunchScreen.storyboard */,
 				32C8B35B206DFA660038D05B /* Info.plist */,
+				32DAB60F207B3A0200D62468 /* CenterViewController.swift */,
+				32DAB615207B3A3500D62468 /* TopViewController.swift */,
+				32DAB617207B4BBF00D62468 /* LeftTableViewController.swift */,
+				32DAB619207B4BCC00D62468 /* RightTableViewController.swift */,
 			);
 			path = MenuSlideController;
 			sourceTree = "<group>";
@@ -137,6 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32DAB61A207B4BCC00D62468 /* RightTableViewController.swift in Sources */,
+				32DAB618207B4BBF00D62468 /* LeftTableViewController.swift in Sources */,
+				32DAB616207B3A3500D62468 /* TopViewController.swift in Sources */,
+				32DAB610207B3A0200D62468 /* CenterViewController.swift in Sources */,
+				32C8B364206E03070038D05B /* MenuSlideController.swift in Sources */,
 				32C8B350206DFA660038D05B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

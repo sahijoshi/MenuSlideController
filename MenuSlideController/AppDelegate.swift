@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let menuSliderVC = MenuSlideController()
+        
+        let centerVC = storyboard.instantiateViewController(withIdentifier: "CenterNavVC")
+        let leftVC = storyboard.instantiateViewController(withIdentifier: "LeftTableViewController")
+        
+        menuSliderVC.add(centerViewController: centerVC)
+        menuSliderVC.add(leftViewController: leftVC)
+        
+        window?.rootViewController = menuSliderVC
+        window?.makeKeyAndVisible()
         return true
     }
 
