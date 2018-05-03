@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         menuSliderVC.add(centerViewController: centerVC)
         menuSliderVC.add(leftViewController: leftVC)
-        
+
         window?.rootViewController = menuSliderVC
         window?.makeKeyAndVisible()
         return true

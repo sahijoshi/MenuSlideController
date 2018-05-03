@@ -35,6 +35,7 @@ open class MenuSlideController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reArranageViews), name: .UIApplicationWillChangeStatusBarFrame, object: UIApplication.shared)
+        configureGestureRecognizer()
     }
     
     override open func didReceiveMemoryWarning() {
@@ -45,6 +46,53 @@ open class MenuSlideController: UIViewController {
         if currentState == .leftPanelExpanded {
 //            toggleLeftPanel()
         }
+    }
+    
+    private func configureGestureRecognizer() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
+//        panGesture.delegate = self
+        
+        centerNavigationController.view.addGestureRecognizer(panGesture)
+    }
+    
+    @objc private func manageCentralPanelPan(_ recognizer: UIPanGestureRecognizer) {
+        let velocity = recognizer.velocity(in: recognizer.view).x
+        let fromLeftToRight = velocity > 0
+        
+        
+        switch recognizer.state {
+        case .began:
+            print("began")
+
+        case .changed:
+            let translation = recognizer.translation(in: view).x
+            
+            var frame = centerNavigationController.view.frame
+            frame.origin.x += translation
+            centerNavigationController.view.frame = frame
+            recognizer.setTranslation(.zero, in: view)
+        default:
+            print("default")
+            var openDrawer = false
+            let centralVCFrame = centerNavigationController.view.frame
+            
+            let openDrawerFactor = CGFloat(0.2)
+            let hideDrawerFactor = CGFloat(0.8)
+
+            if fromLeftToRight {
+                // close drawer
+                openDrawer = centralVCFrame.minX > sidepanelWidth * openDrawerFactor
+            } else {
+                // opne drawer
+                openDrawer = centralVCFrame.minX > sidepanelWidth * hideDrawerFactor
+            }
+            
+            animateToOpenDrawer(openDrawer)
+        }
+    }
+    
+    private func animateToOpenDrawer(_ openDrawer:Bool) {
+        openDrawer ? animateLeftPanel(widthOfSidePanel: sidepanelWidth) : animateLeftPanel(widthOfSidePanel: 0)
     }
     
     func showShadowForCenterViewController(_ shouldShowShadow: Bool) {
