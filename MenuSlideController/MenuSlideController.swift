@@ -11,11 +11,12 @@ import UIKit
 
 enum SlideOutState {
     case bothPanelCollapsed
-    case leftPanelCollapsed
-    case rightPanelCollapsed
+//    case leftPanelCollapsed
+//    case rightPanelCollapsed
     case leftPanelExpanded
     case rightPanelExpanded
-    case topPenelExpanded
+    case topPanelExpanded
+//    case midState
 }
 
 open class MenuSlideController: UIViewController {
@@ -43,14 +44,14 @@ open class MenuSlideController: UIViewController {
     }
     
     @objc func reArranageViews() {
-        if currentState == .leftPanelExpanded {
+//        if currentState == .leftPanelExpanded {
 //            toggleLeftPanel()
-        }
+//        }
     }
     
     private func configureGestureRecognizer() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
-//        panGesture.delegate = self
+        panGesture.delegate = self
         
         centerNavigationController.view.addGestureRecognizer(panGesture)
     }
@@ -58,12 +59,10 @@ open class MenuSlideController: UIViewController {
     @objc private func manageCentralPanelPan(_ recognizer: UIPanGestureRecognizer) {
         let velocity = recognizer.velocity(in: recognizer.view).x
         let fromLeftToRight = velocity > 0
-        
-        
+
         switch recognizer.state {
         case .began:
-            print("began")
-
+            showShadowForCenterViewController(true)
         case .changed:
             let translation = recognizer.translation(in: view).x
             
@@ -72,7 +71,6 @@ open class MenuSlideController: UIViewController {
             centerNavigationController.view.frame = frame
             recognizer.setTranslation(.zero, in: view)
         default:
-            print("default")
             var openDrawer = false
             let centralVCFrame = centerNavigationController.view.frame
             
@@ -83,7 +81,7 @@ open class MenuSlideController: UIViewController {
                 // close drawer
                 openDrawer = centralVCFrame.minX > sidepanelWidth * openDrawerFactor
             } else {
-                // opne drawer
+                // open drawer
                 openDrawer = centralVCFrame.minX > sidepanelWidth * hideDrawerFactor
             }
             
@@ -129,22 +127,24 @@ open class MenuSlideController: UIViewController {
     }
     
     func toggleLeft() {
+        showShadowForCenterViewController(true)
         currentState == .leftPanelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
     }
     
     func animateLeftPanel(widthOfSidePanel: CGFloat) {
         animateCenterPanelXPosition(targetPosition: widthOfSidePanel) { (success) in
-            self.currentState = self.currentState == .leftPanelExpanded ? .leftPanelCollapsed : .leftPanelExpanded
+            self.currentState = self.currentState == .leftPanelExpanded ? .bothPanelCollapsed : .leftPanelExpanded
         }
     }
     
     func toggleRight() {
+        showShadowForCenterViewController(true)
         currentState == .rightPanelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
     }
     
     func animateRightPanel(widthOfSidePanel: CGFloat) {
         animateCenterPanelXPosition(targetPosition: -widthOfSidePanel) { (success) in
-            self.currentState = self.currentState == .rightPanelExpanded ? .rightPanelCollapsed : .rightPanelExpanded
+            self.currentState = self.currentState == .rightPanelExpanded ? .bothPanelCollapsed : .rightPanelExpanded
         }
     }
 
@@ -155,6 +155,12 @@ open class MenuSlideController: UIViewController {
         }) { (success) in
             completion(success)
         }
+    }
+}
+
+extension MenuSlideController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
     }
 }
 
