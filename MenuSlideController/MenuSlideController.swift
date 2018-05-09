@@ -11,12 +11,12 @@ import UIKit
 
 enum SlideOutState {
     case bothPanelCollapsed
-//    case leftPanelCollapsed
-//    case rightPanelCollapsed
-    case leftPanelExpanded
-    case rightPanelExpanded
-    case topPanelExpanded
-//    case midState
+    case panelExpanded
+}
+
+enum SliderPosition {
+    case leftSlider
+    case rightSlider
 }
 
 open class MenuSlideController: UIViewController {
@@ -24,13 +24,15 @@ open class MenuSlideController: UIViewController {
     var centerViewController: UIViewController!
     var leftViewController: UIViewController?
     let sidepanelWidth: CGFloat = 180
-
+    var sliderPosition: SliderPosition = .leftSlider
+    
     var currentState: SlideOutState = .bothPanelCollapsed {
         didSet {
             let shouldShowShadow = currentState != .bothPanelCollapsed
             showShadowForCenterViewController(shouldShowShadow)
         }
     }
+
 
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -44,45 +46,79 @@ open class MenuSlideController: UIViewController {
     }
     
     @objc func reArranageViews() {
-//        if currentState == .leftPanelExpanded {
-//            toggleLeftPanel()
-//        }
+        if currentState == .panelExpanded {
+            toggleLeft()
+        } else if currentState == .panelExpanded{
+            toggleRight()
+        }
     }
     
     private func configureGestureRecognizer() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
-        panGesture.delegate = self
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
+//        panGesture.delegate = self
         
-        centerNavigationController.view.addGestureRecognizer(panGesture)
+        let leftPan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
+        leftPan.delegate = self
+        leftPan.edges = .left
+        
+        let rightPan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
+        rightPan.delegate = self
+        rightPan.edges = .right
+        
+        centerNavigationController.view.addGestureRecognizer(leftPan)
+        centerNavigationController.view.addGestureRecognizer(rightPan)
+//        centerNavigationController.view.addGestureRecognizer(panGesture)
     }
     
     @objc private func manageCentralPanelPan(_ recognizer: UIPanGestureRecognizer) {
-        let velocity = recognizer.velocity(in: recognizer.view).x
-        let fromLeftToRight = velocity > 0
+        let velocityX = recognizer.velocity(in: recognizer.view).x
+        let fromLeftToRight = velocityX > 0
 
         switch recognizer.state {
         case .began:
             showShadowForCenterViewController(true)
         case .changed:
-            let translation = recognizer.translation(in: view).x
-            
+            let translationX = recognizer.translation(in: view).x
             var frame = centerNavigationController.view.frame
-            frame.origin.x += translation
+            
+            switch sliderPosition {
+            case .leftSlider:
+                frame.origin.x += translationX
+                if frame.minX < 0 {return}
+            case .rightSlider:
+                frame.origin.x += translationX
+                if frame.maxX > frame.width {return}
+            }
+
             centerNavigationController.view.frame = frame
             recognizer.setTranslation(.zero, in: view)
+            
         default:
             var openDrawer = false
             let centralVCFrame = centerNavigationController.view.frame
             
             let openDrawerFactor = CGFloat(0.2)
             let hideDrawerFactor = CGFloat(0.8)
-
-            if fromLeftToRight {
-                // close drawer
-                openDrawer = centralVCFrame.minX > sidepanelWidth * openDrawerFactor
-            } else {
-                // open drawer
-                openDrawer = centralVCFrame.minX > sidepanelWidth * hideDrawerFactor
+            
+            switch sliderPosition {
+            case .leftSlider:
+                if fromLeftToRight {
+                    // open drawer
+                    openDrawer = centralVCFrame.minX > sidepanelWidth * openDrawerFactor
+                } else {
+                    // close drawer
+                    openDrawer = centralVCFrame.minX > sidepanelWidth * hideDrawerFactor
+                }
+            case .rightSlider:
+                if fromLeftToRight {
+                    // close drawer
+                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > sidepanelWidth * hideDrawerFactor
+                    
+                } else {
+                    // open drawer
+                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > sidepanelWidth * openDrawerFactor
+                }
+                
             }
             
             animateToOpenDrawer(openDrawer)
@@ -90,7 +126,28 @@ open class MenuSlideController: UIViewController {
     }
     
     private func animateToOpenDrawer(_ openDrawer:Bool) {
-        openDrawer ? animateLeftPanel(widthOfSidePanel: sidepanelWidth) : animateLeftPanel(widthOfSidePanel: 0)
+        
+        switch sliderPosition {
+        case .leftSlider:
+            if openDrawer {
+                currentState = .panelExpanded
+                animateLeftPanel(widthOfSidePanel: sidepanelWidth)
+            } else {
+                currentState = .bothPanelCollapsed
+                animateLeftPanel(widthOfSidePanel: 0)
+            }
+
+        case .rightSlider:
+            if openDrawer {
+                currentState = .panelExpanded
+                animateRightPanel(widthOfSidePanel: sidepanelWidth)
+            } else {
+                currentState = .bothPanelCollapsed
+                animateRightPanel(widthOfSidePanel: 0)
+            }
+            
+        }
+
     }
     
     func showShadowForCenterViewController(_ shouldShowShadow: Bool) {
@@ -127,28 +184,27 @@ open class MenuSlideController: UIViewController {
     }
     
     func toggleLeft() {
-        showShadowForCenterViewController(true)
-        currentState == .leftPanelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
+        currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
+        currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
     }
     
     func animateLeftPanel(widthOfSidePanel: CGFloat) {
         animateCenterPanelXPosition(targetPosition: widthOfSidePanel) { (success) in
-            self.currentState = self.currentState == .leftPanelExpanded ? .bothPanelCollapsed : .leftPanelExpanded
+
         }
     }
     
     func toggleRight() {
-        showShadowForCenterViewController(true)
-        currentState == .rightPanelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
+        currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
+        currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
     }
     
     func animateRightPanel(widthOfSidePanel: CGFloat) {
         animateCenterPanelXPosition(targetPosition: -widthOfSidePanel) { (success) in
-            self.currentState = self.currentState == .rightPanelExpanded ? .bothPanelCollapsed : .rightPanelExpanded
+
         }
     }
 
-    
     func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.centerNavigationController.view.frame.origin.x = targetPosition
@@ -156,6 +212,7 @@ open class MenuSlideController: UIViewController {
             completion(success)
         }
     }
+    
 }
 
 extension MenuSlideController: UIGestureRecognizerDelegate {

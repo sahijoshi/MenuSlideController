@@ -13,11 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let menuSliderVC = MenuSlideController()
+        menuSliderVC.sliderPosition = .leftSlider
         
         let centerVC = storyboard.instantiateViewController(withIdentifier: "CenterNavVC")
         let leftVC = storyboard.instantiateViewController(withIdentifier: "LeftTableViewController")
