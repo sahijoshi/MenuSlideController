@@ -17,13 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let menuSliderVC = MenuSlideController()
-        menuSliderVC.sliderPosition = .leftSlider
-        
+        menuSliderVC.sliderPosition = .rightSlider
+
         let centerVC = storyboard.instantiateViewController(withIdentifier: "CenterNavVC")
-        let leftVC = storyboard.instantiateViewController(withIdentifier: "LeftTableViewController")
-        
+        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuController")
+
         menuSliderVC.add(centerViewController: centerVC)
-        menuSliderVC.add(leftViewController: leftVC)
+        menuSliderVC.add(leftViewController: menuVC)
 
         window?.rootViewController = menuSliderVC
         window?.makeKeyAndVisible()
