@@ -1,14 +1,14 @@
 //
-//  RightTableViewController.swift
+//  MenuController.swift
 //  MenuSlideController
 //
-//  Created by Sahi Joshi on 4/9/18.
+//  Created by Sahi Joshi on 7/10/18.
 //  Copyright © 2018 Sahi Joshi. All rights reserved.
 //
 
 import UIKit
 
-class RightTableViewController: UITableViewController {
+class MenuController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

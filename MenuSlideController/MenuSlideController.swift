@@ -9,24 +9,29 @@
 import UIKit
 
 
-enum SlideOutState {
-    case bothPanelCollapsed
-    case panelExpanded
+struct Preference {
+    enum SlideOutState {
+        case bothPanelCollapsed
+        case panelExpanded
+    }
+    
+    enum SliderPosition {
+        case leftSlider
+        case rightSlider
+    }
 }
 
-enum SliderPosition {
-    case leftSlider
-    case rightSlider
-}
 
 open class MenuSlideController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: UIViewController!
     var leftViewController: UIViewController?
     let sidepanelWidth: CGFloat = 180
-    var sliderPosition: SliderPosition = .leftSlider
     
-    var currentState: SlideOutState = .bothPanelCollapsed {
+    static let preference = Preference()
+    
+    var sliderPosition: Preference.SliderPosition = .rightSlider
+    var currentState: Preference.SlideOutState = .bothPanelCollapsed {
         didSet {
             let shouldShowShadow = currentState != .bothPanelCollapsed
             showShadowForCenterViewController(shouldShowShadow)
@@ -54,9 +59,6 @@ open class MenuSlideController: UIViewController {
     }
     
     private func configureGestureRecognizer() {
-//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
-//        panGesture.delegate = self
-        
         let leftPan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
         leftPan.delegate = self
         leftPan.edges = .left
@@ -67,7 +69,6 @@ open class MenuSlideController: UIViewController {
         
         centerNavigationController.view.addGestureRecognizer(leftPan)
         centerNavigationController.view.addGestureRecognizer(rightPan)
-//        centerNavigationController.view.addGestureRecognizer(panGesture)
     }
     
     @objc private func manageCentralPanelPan(_ recognizer: UIPanGestureRecognizer) {
@@ -184,32 +185,32 @@ open class MenuSlideController: UIViewController {
     }
     
     func toggleLeft() {
-        currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
-        currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
+        if sliderPosition == .leftSlider {
+            currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
+            currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
+        }
     }
     
     func animateLeftPanel(widthOfSidePanel: CGFloat) {
-        animateCenterPanelXPosition(targetPosition: widthOfSidePanel) { (success) in
-
-        }
+        animateCenterPanelXPosition(targetPosition: widthOfSidePanel)
     }
     
     func toggleRight() {
-        currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
-        currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
+        if sliderPosition == .rightSlider {
+            currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
+            currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
+        }
     }
     
     func animateRightPanel(widthOfSidePanel: CGFloat) {
-        animateCenterPanelXPosition(targetPosition: -widthOfSidePanel) { (success) in
-
-        }
+        animateCenterPanelXPosition(targetPosition: -widthOfSidePanel)
     }
 
-    func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+    func animateCenterPanelXPosition(targetPosition: CGFloat) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.centerNavigationController.view.frame.origin.x = targetPosition
         }) { (success) in
-            completion(success)
+            
         }
     }
     

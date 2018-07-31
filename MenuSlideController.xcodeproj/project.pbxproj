@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		328D11D920E3583D00E19935 /* CenterControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328D11D820E3583C00E19935 /* CenterControllerSegue.swift */; };
+		328D11DB20E358B700E19935 /* SideControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328D11DA20E358B700E19935 /* SideControllerSegue.swift */; };
+		32B4056E20F4B91B009D70DC /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B4056D20F4B91B009D70DC /* MenuController.swift */; };
 		32C8B350206DFA660038D05B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8B34F206DFA660038D05B /* AppDelegate.swift */; };
 		32C8B355206DFA660038D05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B353206DFA660038D05B /* Main.storyboard */; };
 		32C8B357206DFA660038D05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B356206DFA660038D05B /* Assets.xcassets */; };
@@ -14,12 +17,12 @@
 		32C8B362206DFA7F0038D05B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B361206DFA7F0038D05B /* README.md */; };
 		32C8B364206E03070038D05B /* MenuSlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8B363206E03070038D05B /* MenuSlideController.swift */; };
 		32DAB610207B3A0200D62468 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB60F207B3A0200D62468 /* CenterViewController.swift */; };
-		32DAB616207B3A3500D62468 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB615207B3A3500D62468 /* TopViewController.swift */; };
-		32DAB618207B4BBF00D62468 /* LeftTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB617207B4BBF00D62468 /* LeftTableViewController.swift */; };
-		32DAB61A207B4BCC00D62468 /* RightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DAB619207B4BCC00D62468 /* RightTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		328D11D820E3583C00E19935 /* CenterControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterControllerSegue.swift; sourceTree = "<group>"; };
+		328D11DA20E358B700E19935 /* SideControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideControllerSegue.swift; sourceTree = "<group>"; };
+		32B4056D20F4B91B009D70DC /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		32C8B34C206DFA660038D05B /* MenuSlideController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuSlideController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C8B34F206DFA660038D05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C8B354206DFA660038D05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,9 +32,6 @@
 		32C8B361206DFA7F0038D05B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		32C8B363206E03070038D05B /* MenuSlideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSlideController.swift; sourceTree = "<group>"; };
 		32DAB60F207B3A0200D62468 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
-		32DAB615207B3A3500D62468 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
-		32DAB617207B4BBF00D62468 /* LeftTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTableViewController.swift; sourceTree = "<group>"; };
-		32DAB619207B4BCC00D62468 /* RightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		328D11D720E3580A00E19935 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				328D11D820E3583C00E19935 /* CenterControllerSegue.swift */,
+				328D11DA20E358B700E19935 /* SideControllerSegue.swift */,
+			);
+			path = Segues;
+			sourceTree = "<group>";
+		};
 		32C8B343206DFA660038D05B = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +74,7 @@
 		32C8B34E206DFA660038D05B /* MenuSlideController */ = {
 			isa = PBXGroup;
 			children = (
+				328D11D720E3580A00E19935 /* Segues */,
 				32C8B34F206DFA660038D05B /* AppDelegate.swift */,
 				32C8B363206E03070038D05B /* MenuSlideController.swift */,
 				32C8B353206DFA660038D05B /* Main.storyboard */,
@@ -72,9 +82,7 @@
 				32C8B358206DFA660038D05B /* LaunchScreen.storyboard */,
 				32C8B35B206DFA660038D05B /* Info.plist */,
 				32DAB60F207B3A0200D62468 /* CenterViewController.swift */,
-				32DAB615207B3A3500D62468 /* TopViewController.swift */,
-				32DAB617207B4BBF00D62468 /* LeftTableViewController.swift */,
-				32DAB619207B4BCC00D62468 /* RightTableViewController.swift */,
+				32B4056D20F4B91B009D70DC /* MenuController.swift */,
 			);
 			path = MenuSlideController;
 			sourceTree = "<group>";
@@ -152,11 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32DAB61A207B4BCC00D62468 /* RightTableViewController.swift in Sources */,
-				32DAB618207B4BBF00D62468 /* LeftTableViewController.swift in Sources */,
-				32DAB616207B3A3500D62468 /* TopViewController.swift in Sources */,
+				32B4056E20F4B91B009D70DC /* MenuController.swift in Sources */,
+				328D11D920E3583D00E19935 /* CenterControllerSegue.swift in Sources */,
 				32DAB610207B3A0200D62468 /* CenterViewController.swift in Sources */,
 				32C8B364206E03070038D05B /* MenuSlideController.swift in Sources */,
+				328D11DB20E358B700E19935 /* SideControllerSegue.swift in Sources */,
 				32C8B350206DFA660038D05B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
