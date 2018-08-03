@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		322C6273211325500090686C /* MenuSlideController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 322C6272211325500090686C /* MenuSlideController.podspec */; };
+		322C627521132E730090686C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 322C627421132E730090686C /* LICENSE */; };
 		328D11D920E3583D00E19935 /* CenterControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328D11D820E3583C00E19935 /* CenterControllerSegue.swift */; };
 		328D11DB20E358B700E19935 /* SideControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328D11DA20E358B700E19935 /* SideControllerSegue.swift */; };
 		32B4056E20F4B91B009D70DC /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B4056D20F4B91B009D70DC /* MenuController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		322C6272211325500090686C /* MenuSlideController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MenuSlideController.podspec; sourceTree = "<group>"; };
+		322C627421132E730090686C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		328D11D820E3583C00E19935 /* CenterControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterControllerSegue.swift; sourceTree = "<group>"; };
 		328D11DA20E358B700E19935 /* SideControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideControllerSegue.swift; sourceTree = "<group>"; };
 		32B4056D20F4B91B009D70DC /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		32C8B343206DFA660038D05B = {
 			isa = PBXGroup;
 			children = (
+				322C627421132E730090686C /* LICENSE */,
+				322C6272211325500090686C /* MenuSlideController.podspec */,
 				32C8B34E206DFA660038D05B /* MenuSlideController */,
 				32C8B34D206DFA660038D05B /* Products */,
 			);
@@ -144,8 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C8B35A206DFA660038D05B /* LaunchScreen.storyboard in Resources */,
+				322C6273211325500090686C /* MenuSlideController.podspec in Resources */,
 				32C8B357206DFA660038D05B /* Assets.xcassets in Resources */,
 				32C8B355206DFA660038D05B /* Main.storyboard in Resources */,
+				322C627521132E730090686C /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
