@@ -9,28 +9,27 @@
 import UIKit
 
 
-struct Preference {
-    enum SlideOutState {
+public struct Preference {
+    public enum SlideOutState {
         case bothPanelCollapsed
         case panelExpanded
     }
     
-    enum SliderPosition {
+   public enum SliderPosition {
         case leftSlider
         case rightSlider
     }
 }
 
 
-open class MenuSlideController: UIViewController {
+public class MenuSlideController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: UIViewController!
-    var leftViewController: UIViewController?
     let sidepanelWidth: CGFloat = 180
     
     static let preference = Preference()
+    public var sliderPosition: Preference.SliderPosition = .rightSlider
     
-    var sliderPosition: Preference.SliderPosition = .rightSlider
     var currentState: Preference.SlideOutState = .bothPanelCollapsed {
         didSet {
             let shouldShowShadow = currentState != .bothPanelCollapsed
@@ -159,7 +158,7 @@ open class MenuSlideController: UIViewController {
         }
     }
 
-    func add(centerViewController controller: UIViewController){
+    public func add(centerViewController controller: UIViewController){
         if centerNavigationController != nil {
             centerNavigationController.willMove(toParentViewController: nil)
             centerNavigationController.view.removeFromSuperview()
@@ -174,7 +173,7 @@ open class MenuSlideController: UIViewController {
         }
     }
     
-    func add(leftViewController controller: UIViewController) {
+    public func add(sideViewController controller: UIViewController) {
         add(sidePanelChildViewController: controller)
     }
     
@@ -184,7 +183,7 @@ open class MenuSlideController: UIViewController {
         controller.didMove(toParentViewController: self)
     }
     
-    func toggleLeft() {
+    public func toggleLeft() {
         if sliderPosition == .leftSlider {
             currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
             currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
@@ -195,7 +194,7 @@ open class MenuSlideController: UIViewController {
         animateCenterPanelXPosition(targetPosition: widthOfSidePanel)
     }
     
-    func toggleRight() {
+    public func toggleRight() {
         if sliderPosition == .rightSlider {
             currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
             currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded

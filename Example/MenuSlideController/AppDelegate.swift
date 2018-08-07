@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MenuSlideControllerSource
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuController")
 
         menuSliderVC.add(centerViewController: centerVC)
-        menuSliderVC.add(leftViewController: menuVC)
+        menuSliderVC.add(sideViewController: menuVC)
 
         window?.rootViewController = menuSliderVC
         window?.makeKeyAndVisible()

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MenuSlideControllerSource/MenuSlideControllerSource.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Example/MenuSlideController.xcodeproj">
    </FileRef>
 </Workspace>
