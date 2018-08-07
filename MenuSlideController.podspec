@@ -40,7 +40,7 @@ A side menu controller based on container views. A simple and highly customizabl
   #
 
 #s.license      = "MIT (example)"
-  s.license      = { :type => "MIT", :file => "LICENSE" }
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +91,7 @@ A side menu controller based on container views. A simple and highly customizabl
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{swift}"
+  s.source_files = 'MenuSlideControllerSource/MenuSlideControllerSource/Sources/*.swift'
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
