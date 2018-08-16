@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.name         = "MenuSlideController"
   s.version      = "1.0.0"
   s.summary      = "Controller for sliding menus."
+  s.swift_version = '4.1'
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -68,7 +69,7 @@ A side menu controller based on container views. A simple and highly customizabl
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
+    s.ios.deployment_target = "11.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -91,7 +92,7 @@ A side menu controller based on container views. A simple and highly customizabl
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files = 'MenuSlideControllerSource/MenuSlideControllerSource/Sources/*.swift'
+  s.source_files = 'MenuSlideControllerSource/MenuSlideControllerSource/Sources/**/*.swift'
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
