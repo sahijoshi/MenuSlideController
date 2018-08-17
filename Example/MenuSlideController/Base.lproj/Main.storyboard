@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,7 +35,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WSz-ux-0NI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="869"/>
+            <point key="canvasLocation" x="916" y="890"/>
         </scene>
         <!--Center View Controller-->
         <scene sceneID="gcN-Fj-2cU">
@@ -65,22 +64,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XIQ-K4-ScJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2104.8000000000002" y="120.08995502248877"/>
+            <point key="canvasLocation" x="1831" y="72"/>
         </scene>
-        <!--View Controller-->
+        <!--Segue Menu Slide Controller-->
         <scene sceneID="dgO-GN-BhV">
             <objects>
-                <viewController id="Th9-Ee-C3e" sceneMemberID="viewController">
+                <viewController id="Th9-Ee-C3e" customClass="SegueMenuSlideController" customModule="MenuSlideController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gY7-xb-Haw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EmS-fJ-7UV"/>
                     </view>
+                    <connections>
+                        <segue destination="OIp-97-fcu" kind="custom" identifier="showDetailController1" customClass="CenterControllerSegue" customModule="MenuSlideControllerSource" id="jyF-AA-H4z"/>
+                        <segue destination="jOr-YL-NJS" kind="custom" identifier="showSideController" customClass="SideControllerSegue" customModule="MenuSlideControllerSource" id="XEn-mf-oRh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI4-yB-fMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="120"/>
+            <point key="canvasLocation" x="-266" y="490"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GeB-Oh-MDG">
@@ -99,7 +102,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IiO-gd-dVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="120"/>
+            <point key="canvasLocation" x="916" y="73"/>
         </scene>
     </scenes>
     <resources>

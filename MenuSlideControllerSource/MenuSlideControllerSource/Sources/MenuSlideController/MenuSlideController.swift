@@ -22,7 +22,7 @@ public struct Preference {
 }
 
 
-public class MenuSlideController: UIViewController {
+open class MenuSlideController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: UIViewController!
     let sidepanelWidth: CGFloat = 180
@@ -36,11 +36,9 @@ public class MenuSlideController: UIViewController {
             showShadowForCenterViewController(shouldShowShadow)
         }
     }
-
-
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(reArranageViews), name: .UIApplicationWillChangeStatusBarFrame, object: UIApplication.shared)
         configureGestureRecognizer()
     }
