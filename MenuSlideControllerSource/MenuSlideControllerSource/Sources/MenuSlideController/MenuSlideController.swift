@@ -9,28 +9,36 @@
 import UIKit
 
 
-public struct Preference {
-    public enum SlideOutState {
+public extension MenuSlideController {
+    
+    enum SlideOutState {
         case bothPanelCollapsed
         case panelExpanded
     }
     
-   public enum SliderPosition {
-        case leftSlider
-        case rightSlider
+    public struct Preference {
+        public enum SliderPosition {
+            case leftSlider
+            case rightSlider
+        }
+        
+        public var sliderPosition: SliderPosition = .leftSlider
+        public var sidepanelWidth: CGFloat = 180
     }
-}
 
+}
 
 open class MenuSlideController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: UIViewController!
-    let sidepanelWidth: CGFloat = 180
     
-    static let preference = Preference()
-    public var sliderPosition: Preference.SliderPosition = .rightSlider
+    open static var preferences = Preference()
     
-    var currentState: Preference.SlideOutState = .bothPanelCollapsed {
+    lazy var _preferences: Preference = {
+        return type(of: self).preferences
+    }()
+    
+    var currentState: SlideOutState = .bothPanelCollapsed {
         didSet {
             let shouldShowShadow = currentState != .bothPanelCollapsed
             showShadowForCenterViewController(shouldShowShadow)
@@ -79,7 +87,7 @@ open class MenuSlideController: UIViewController {
             let translationX = recognizer.translation(in: view).x
             var frame = centerNavigationController.view.frame
             
-            switch sliderPosition {
+            switch _preferences.sliderPosition {
             case .leftSlider:
                 frame.origin.x += translationX
                 if frame.minX < 0 {return}
@@ -98,23 +106,23 @@ open class MenuSlideController: UIViewController {
             let openDrawerFactor = CGFloat(0.2)
             let hideDrawerFactor = CGFloat(0.8)
             
-            switch sliderPosition {
+            switch _preferences.sliderPosition {
             case .leftSlider:
                 if fromLeftToRight {
                     // open drawer
-                    openDrawer = centralVCFrame.minX > sidepanelWidth * openDrawerFactor
+                    openDrawer = centralVCFrame.minX > _preferences.sidepanelWidth * openDrawerFactor
                 } else {
                     // close drawer
-                    openDrawer = centralVCFrame.minX > sidepanelWidth * hideDrawerFactor
+                    openDrawer = centralVCFrame.minX > _preferences.sidepanelWidth * hideDrawerFactor
                 }
             case .rightSlider:
                 if fromLeftToRight {
                     // close drawer
-                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > sidepanelWidth * hideDrawerFactor
+                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > _preferences.sidepanelWidth * hideDrawerFactor
                     
                 } else {
                     // open drawer
-                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > sidepanelWidth * openDrawerFactor
+                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > _preferences.sidepanelWidth * openDrawerFactor
                 }
                 
             }
@@ -125,11 +133,11 @@ open class MenuSlideController: UIViewController {
     
     private func animateToOpenDrawer(_ openDrawer:Bool) {
         
-        switch sliderPosition {
+        switch _preferences.sliderPosition {
         case .leftSlider:
             if openDrawer {
                 currentState = .panelExpanded
-                animateLeftPanel(widthOfSidePanel: sidepanelWidth)
+                animateLeftPanel(widthOfSidePanel: _preferences.sidepanelWidth)
             } else {
                 currentState = .bothPanelCollapsed
                 animateLeftPanel(widthOfSidePanel: 0)
@@ -138,7 +146,7 @@ open class MenuSlideController: UIViewController {
         case .rightSlider:
             if openDrawer {
                 currentState = .panelExpanded
-                animateRightPanel(widthOfSidePanel: sidepanelWidth)
+                animateRightPanel(widthOfSidePanel: _preferences.sidepanelWidth)
             } else {
                 currentState = .bothPanelCollapsed
                 animateRightPanel(widthOfSidePanel: 0)
@@ -182,8 +190,8 @@ open class MenuSlideController: UIViewController {
     }
     
     public func toggleLeft() {
-        if sliderPosition == .leftSlider {
-            currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: sidepanelWidth)
+        if _preferences.sliderPosition == .leftSlider {
+            currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: _preferences.sidepanelWidth)
             currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
         }
     }
@@ -193,8 +201,8 @@ open class MenuSlideController: UIViewController {
     }
     
     public func toggleRight() {
-        if sliderPosition == .rightSlider {
-            currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: sidepanelWidth)
+        if _preferences.sliderPosition == .rightSlider {
+            currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: _preferences.sidepanelWidth)
             currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
         }
     }
