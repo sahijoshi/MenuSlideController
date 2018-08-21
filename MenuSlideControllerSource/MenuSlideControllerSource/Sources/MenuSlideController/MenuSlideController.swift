@@ -9,6 +9,8 @@
 import UIKit
 
 
+// MARK:- Preferences
+
 public extension MenuSlideController {
     
     enum SlideOutState {
@@ -16,7 +18,7 @@ public extension MenuSlideController {
         case panelExpanded
     }
     
-    public struct Preference {
+    public struct Settings {
         public enum SliderPosition {
             case leftSlider
             case rightSlider
@@ -24,6 +26,7 @@ public extension MenuSlideController {
         
         public var sliderPosition: SliderPosition = .leftSlider
         public var sidepanelWidth: CGFloat = 180
+        public var gestureEnable = true
     }
 
 }
@@ -32,10 +35,10 @@ open class MenuSlideController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: UIViewController!
     
-    open static var preferences = Preference()
+    open static var settings = Settings()
     
-    lazy var _preferences: Preference = {
-        return type(of: self).preferences
+    lazy var _settings: Settings = {
+        return type(of: self).settings
     }()
     
     var currentState: SlideOutState = .bothPanelCollapsed {
@@ -47,8 +50,7 @@ open class MenuSlideController: UIViewController {
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(reArranageViews), name: .UIApplicationWillChangeStatusBarFrame, object: UIApplication.shared)
-        configureGestureRecognizer()
+        
     }
     
     override open func didReceiveMemoryWarning() {
@@ -63,6 +65,16 @@ open class MenuSlideController: UIViewController {
         }
     }
     
+    private func initialSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reArranageViews), name: .UIApplicationWillChangeStatusBarFrame, object: UIApplication.shared)
+        
+        if _settings.gestureEnable {
+            configureGestureRecognizer()
+        }
+        
+        currentState = .bothPanelCollapsed
+    }
+
     private func configureGestureRecognizer() {
         let leftPan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(manageCentralPanelPan(_:)))
         leftPan.delegate = self
@@ -87,7 +99,7 @@ open class MenuSlideController: UIViewController {
             let translationX = recognizer.translation(in: view).x
             var frame = centerNavigationController.view.frame
             
-            switch _preferences.sliderPosition {
+            switch _settings.sliderPosition {
             case .leftSlider:
                 frame.origin.x += translationX
                 if frame.minX < 0 {return}
@@ -106,23 +118,23 @@ open class MenuSlideController: UIViewController {
             let openDrawerFactor = CGFloat(0.2)
             let hideDrawerFactor = CGFloat(0.8)
             
-            switch _preferences.sliderPosition {
+            switch _settings.sliderPosition {
             case .leftSlider:
                 if fromLeftToRight {
                     // open drawer
-                    openDrawer = centralVCFrame.minX > _preferences.sidepanelWidth * openDrawerFactor
+                    openDrawer = centralVCFrame.minX > _settings.sidepanelWidth * openDrawerFactor
                 } else {
                     // close drawer
-                    openDrawer = centralVCFrame.minX > _preferences.sidepanelWidth * hideDrawerFactor
+                    openDrawer = centralVCFrame.minX > _settings.sidepanelWidth * hideDrawerFactor
                 }
             case .rightSlider:
                 if fromLeftToRight {
                     // close drawer
-                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > _preferences.sidepanelWidth * hideDrawerFactor
+                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > _settings.sidepanelWidth * hideDrawerFactor
                     
                 } else {
                     // open drawer
-                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > _preferences.sidepanelWidth * openDrawerFactor
+                    openDrawer = centralVCFrame.width - centralVCFrame.maxX > _settings.sidepanelWidth * openDrawerFactor
                 }
                 
             }
@@ -133,11 +145,11 @@ open class MenuSlideController: UIViewController {
     
     private func animateToOpenDrawer(_ openDrawer:Bool) {
         
-        switch _preferences.sliderPosition {
+        switch _settings.sliderPosition {
         case .leftSlider:
             if openDrawer {
                 currentState = .panelExpanded
-                animateLeftPanel(widthOfSidePanel: _preferences.sidepanelWidth)
+                animateLeftPanel(widthOfSidePanel: _settings.sidepanelWidth)
             } else {
                 currentState = .bothPanelCollapsed
                 animateLeftPanel(widthOfSidePanel: 0)
@@ -146,7 +158,7 @@ open class MenuSlideController: UIViewController {
         case .rightSlider:
             if openDrawer {
                 currentState = .panelExpanded
-                animateRightPanel(widthOfSidePanel: _preferences.sidepanelWidth)
+                animateRightPanel(widthOfSidePanel: _settings.sidepanelWidth)
             } else {
                 currentState = .bothPanelCollapsed
                 animateRightPanel(widthOfSidePanel: 0)
@@ -156,7 +168,7 @@ open class MenuSlideController: UIViewController {
 
     }
     
-    func showShadowForCenterViewController(_ shouldShowShadow: Bool) {
+    private func showShadowForCenterViewController(_ shouldShowShadow: Bool) {
         if (shouldShowShadow) {
             centerNavigationController.view.layer.shadowOpacity = 0.8
         } else {
@@ -165,6 +177,7 @@ open class MenuSlideController: UIViewController {
     }
 
     public func add(centerViewController controller: UIViewController){
+       
         if centerNavigationController != nil {
             centerNavigationController.willMove(toParentViewController: nil)
             centerNavigationController.view.removeFromSuperview()
@@ -177,41 +190,43 @@ open class MenuSlideController: UIViewController {
             addChildViewController(centerNavigationController)
             centerNavigationController.didMove(toParentViewController: self)
         }
+        
+         initialSetup()
     }
     
     public func add(sideViewController controller: UIViewController) {
         add(sidePanelChildViewController: controller)
     }
     
-    func add(sidePanelChildViewController controller: UIViewController) {
+    private func add(sidePanelChildViewController controller: UIViewController) {
         view.insertSubview(controller.view, at: 0)
         addChildViewController(controller)
         controller.didMove(toParentViewController: self)
     }
     
     public func toggleLeft() {
-        if _preferences.sliderPosition == .leftSlider {
-            currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: _preferences.sidepanelWidth)
+        if _settings.sliderPosition == .leftSlider {
+            currentState == .panelExpanded ? animateLeftPanel(widthOfSidePanel: 0) : animateLeftPanel(widthOfSidePanel: _settings.sidepanelWidth)
             currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
         }
     }
     
-    func animateLeftPanel(widthOfSidePanel: CGFloat) {
+    private func animateLeftPanel(widthOfSidePanel: CGFloat) {
         animateCenterPanelXPosition(targetPosition: widthOfSidePanel)
     }
     
     public func toggleRight() {
-        if _preferences.sliderPosition == .rightSlider {
-            currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: _preferences.sidepanelWidth)
+        if _settings.sliderPosition == .rightSlider {
+            currentState == .panelExpanded ? animateRightPanel(widthOfSidePanel: 0) : animateRightPanel(widthOfSidePanel: _settings.sidepanelWidth)
             currentState = self.currentState == .panelExpanded ? .bothPanelCollapsed : .panelExpanded
         }
     }
     
-    func animateRightPanel(widthOfSidePanel: CGFloat) {
+    private func animateRightPanel(widthOfSidePanel: CGFloat) {
         animateCenterPanelXPosition(targetPosition: -widthOfSidePanel)
     }
 
-    func animateCenterPanelXPosition(targetPosition: CGFloat) {
+    private func animateCenterPanelXPosition(targetPosition: CGFloat) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.centerNavigationController.view.frame.origin.x = targetPosition
         }) { (success) in
@@ -221,12 +236,15 @@ open class MenuSlideController: UIViewController {
     
 }
 
+// MARK:- UIGestureRecognizerDelegate
+
 extension MenuSlideController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true
     }
 }
 
+// returns reference to menuSlider which is accessible from publicly.
 public extension UIViewController {
     
     public var slideMenuController: MenuSlideController? {

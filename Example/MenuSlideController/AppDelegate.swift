@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let menuSliderVC = MenuSlideController()
 //        menuSliderVC.sliderPosition = .rightSlider
         
-        MenuSlideController.preferences.sliderPosition = .rightSlider
-        MenuSlideController.preferences.sidepanelWidth = 250
+        MenuSlideController.settings.sliderPosition = .leftSlider
+        MenuSlideController.settings.sidepanelWidth = 180
 
 //        let centerVC = storyboard.instantiateViewController(withIdentifier: "CenterNavVC")
 //        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuController")
