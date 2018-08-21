@@ -8,23 +8,14 @@
 
 import UIKit
 
-class CenterViewController: UIViewController {
+class CenterViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func toggleLeft(_ sender: Any) {
-        slideMenuController?.toggleLeft()
-    }
-    
-    @IBAction func toggleRight(_ sender: Any) {
-        slideMenuController?.toggleRight()
-    }
-
+        
 }

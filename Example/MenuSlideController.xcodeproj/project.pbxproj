@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		325DFD3A212C1D270039007B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DFD39212C1D260039007B /* BaseViewController.swift */; };
 		32B4056E20F4B91B009D70DC /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B4056D20F4B91B009D70DC /* MenuController.swift */; };
 		32C8B350206DFA660038D05B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C8B34F206DFA660038D05B /* AppDelegate.swift */; };
 		32C8B355206DFA660038D05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C8B353206DFA660038D05B /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		325DFD39212C1D260039007B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		32B4056D20F4B91B009D70DC /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		32C8B34C206DFA660038D05B /* MenuSlideController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuSlideController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C8B34F206DFA660038D05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		32F644052126CF2800ABAE34 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				325DFD39212C1D260039007B /* BaseViewController.swift */,
 				32F644062126CFA700ABAE34 /* SegueMenuSlideController.swift */,
 				32DAB60F207B3A0200D62468 /* CenterViewController.swift */,
 				32B4056D20F4B91B009D70DC /* MenuController.swift */,
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325DFD3A212C1D270039007B /* BaseViewController.swift in Sources */,
 				32F644072126CFA700ABAE34 /* SegueMenuSlideController.swift in Sources */,
 				32B4056E20F4B91B009D70DC /* MenuController.swift in Sources */,
 				32DAB610207B3A0200D62468 /* CenterViewController.swift in Sources */,
