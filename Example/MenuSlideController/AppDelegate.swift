@@ -16,21 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let menuSliderVC = MenuSlideController()
-//        menuSliderVC.sliderPosition = .rightSlider
-        
         MenuSlideController.settings.sliderPosition = .leftSlider
         MenuSlideController.settings.sidepanelWidth = 180
-
-//        let centerVC = storyboard.instantiateViewController(withIdentifier: "CenterNavVC")
-//        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuController")
-//
-//        menuSliderVC.add(centerViewController: centerVC)
-//        menuSliderVC.add(sideViewController: menuVC)
-//
-//        window?.rootViewController = menuSliderVC
-//        window?.makeKeyAndVisible()
+        
         return true
     }
 
