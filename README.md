@@ -10,7 +10,6 @@ MenuSlideController is a highly customizable and simple container view controlle
 
 
 # Installation
----------------
 ### CocoaPods
 CocoaPods is a dependency manager for Cocoa projects. You can install with following command.
 ```bash
