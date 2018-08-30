@@ -21,12 +21,10 @@ $ gem install cocoapods
 $ pod 'MenuSlideController'
 ```
 # Requirements
--------------
 - Supported build target - iOS 11+
 - Xcode 9 or later
 
 # Usage
-------------
 ### Using Storyboards
 Use by subclassing MenuSlideController and add the following code to add master and detail view conroller.
 
