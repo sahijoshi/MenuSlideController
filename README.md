@@ -6,10 +6,10 @@
 
 MenuSlideController is a highly customizable and simple container view controller which manages child view controllers in a single master-detail interface. The master panel can be displayed on left or either right side of the detail panel, which can be slide in or out by tapping a button or using swipe gesture. The library is designed to support storyboard.
 
-# Preview
+## Preview
+<img src="https://raw.githubusercontent.com/sahijoshi/MenuSlideController/master/Assets/MenuSlide.gif" width="285"/>
 
-
-# Installation
+## Installation
 ### CocoaPods
 CocoaPods is a dependency manager for Cocoa projects. You can install with following command.
 ```bash
@@ -20,11 +20,11 @@ $ gem install cocoapods
 ```bash
 $ pod 'MenuSlideController'
 ```
-# Requirements
+## Requirements
 - Supported build target - iOS 11+
 - Xcode 9 or later
 
-# Usage
+## Usage
 ### Using Storyboards
 Use by subclassing MenuSlideController and add the following code to add master and detail view conroller.
 
