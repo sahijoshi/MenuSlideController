@@ -1,8 +1,8 @@
 # MenuSlideController
 
-[![Platform](https://img.shields.io/cocoapods/p/SideMenuController.svg?style=flat)](http://cocoapods.org/pods/SideMenuController)
-[![Version](https://img.shields.io/cocoapods/v/SideMenuController.svg?style=flat)](http://cocoapods.org/pods/SideMenuController)
-[![License](https://img.shields.io/cocoapods/l/SideMenuController.svg?style=flat)](http://cocoapods.org/pods/SideMenuController)
+[![Platform](https://img.shields.io/cocoapods/p/MenuSlideController.svg?style=flat)](https://cocoapods.org/pods/MenuSlideController)
+[![Version](https://img.shields.io/cocoapods/v/MenuSlideController.svg?style=flat)](https://cocoapods.org/pods/MenuSlideController)
+[![License](https://img.shields.io/cocoapods/l/MenuSlideController.svg?style=flat)](https://cocoapods.org/pods/MenuSlideController)
 
 MenuSlideController is a highly customizable and simple container view controller which manages child view controllers in a single master-detail interface. The master panel can be displayed on left or either right side of the detail panel, which can be slide in or out by tapping a button or using swipe gesture. The library is designed to support storyboard.
 
