@@ -334,7 +334,7 @@
 				INFOPLIST_FILE = MenuSlideController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.javra.MenuSlideController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skj.MenuSlideController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8b083c0b-4c53-4f01-b646-3aeae70e0f79";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDeveloper;
@@ -353,7 +353,7 @@
 				INFOPLIST_FILE = MenuSlideController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.javra.MenuSlideController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skj.MenuSlideController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8b083c0b-4c53-4f01-b646-3aeae70e0f79";
 				PROVISIONING_PROFILE_SPECIFIER = iOSDeveloper;

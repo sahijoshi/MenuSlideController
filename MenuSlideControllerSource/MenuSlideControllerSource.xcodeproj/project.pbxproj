@@ -309,7 +309,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.javra.MenuSlideControllerSource;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skj.MenuSlideControllerSource;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -334,7 +334,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.javra.MenuSlideControllerSource;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skj.MenuSlideControllerSource;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
