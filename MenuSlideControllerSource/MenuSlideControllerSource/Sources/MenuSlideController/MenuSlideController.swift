@@ -35,7 +35,7 @@ open class MenuSlideController: UIViewController {
     var centerNavigationController: UINavigationController!
     var centerViewController: UIViewController!
     
-    open static var settings = Settings()
+    public static var settings = Settings()
     
     lazy var _settings: Settings = {
         return type(of: self).settings
@@ -66,7 +66,7 @@ open class MenuSlideController: UIViewController {
     }
     
     private func initialSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reArranageViews), name: .UIApplicationWillChangeStatusBarFrame, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(reArranageViews), name: UIApplication.willChangeStatusBarFrameNotification, object: UIApplication.shared)
         
         if _settings.gestureEnable {
             configureGestureRecognizer()
@@ -179,7 +179,7 @@ open class MenuSlideController: UIViewController {
     public func add(centerViewController controller: UIViewController){
        
         if centerNavigationController != nil {
-            centerNavigationController.willMove(toParentViewController: nil)
+            centerNavigationController.willMove(toParent: nil)
             centerNavigationController.view.removeFromSuperview()
             centerNavigationController = nil
         }
@@ -187,8 +187,8 @@ open class MenuSlideController: UIViewController {
         if let centerController  = controller as? UINavigationController{
             centerNavigationController = centerController
             view.addSubview(centerNavigationController.view)
-            addChildViewController(centerNavigationController)
-            centerNavigationController.didMove(toParentViewController: self)
+            addChild(centerNavigationController)
+            centerNavigationController.didMove(toParent: self)
         }
         
          initialSetup()
@@ -200,8 +200,8 @@ open class MenuSlideController: UIViewController {
     
     private func add(sidePanelChildViewController controller: UIViewController) {
         view.insertSubview(controller.view, at: 0)
-        addChildViewController(controller)
-        controller.didMove(toParentViewController: self)
+        addChild(controller)
+        controller.didMove(toParent: self)
     }
     
     public func toggleLeft() {
