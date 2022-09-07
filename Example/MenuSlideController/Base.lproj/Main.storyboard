@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Th9-Ee-C3e">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Th9-Ee-C3e">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +19,7 @@
                         <color key="separatorColor" red="0.27721558549861214" green="0.27721558549861214" blue="0.27721558549861214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Ce4-Xh-Ig4">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="44.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ce4-Xh-Ig4" id="GlW-EW-se1">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -56,13 +55,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="HMX-wa-Qgg"/>
                         <color key="backgroundColor" red="0.24862016518667979" green="0.41215939749583641" blue="0.4872827810944671" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Uuw-zy-2fC" firstAttribute="leading" secondItem="HMX-wa-Qgg" secondAttribute="leading" constant="10" id="PXt-0R-2f2"/>
                             <constraint firstItem="HMX-wa-Qgg" firstAttribute="trailing" secondItem="Uuw-zy-2fC" secondAttribute="trailing" constant="10" id="TIy-G8-1e4"/>
                             <constraint firstItem="Uuw-zy-2fC" firstAttribute="centerY" secondItem="Dbm-k8-9h0" secondAttribute="centerY" id="zZ5-qj-3V2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="HMX-wa-Qgg"/>
                     </view>
                     <navigationItem key="navigationItem" id="WzV-Is-3Ya"/>
                 </viewController>
@@ -88,13 +87,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="y4I-NU-mei"/>
                         <color key="backgroundColor" red="0.70838057902192819" green="0.70838057902192819" blue="0.70838057902192819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BG2-2f-tec" firstAttribute="leading" secondItem="y4I-NU-mei" secondAttribute="leading" constant="10" id="N1u-qL-t41"/>
                             <constraint firstItem="y4I-NU-mei" firstAttribute="trailing" secondItem="BG2-2f-tec" secondAttribute="trailing" constant="10" id="O4Y-Wj-oMl"/>
                             <constraint firstItem="BG2-2f-tec" firstAttribute="centerY" secondItem="I1s-xn-YE1" secondAttribute="centerY" id="nnN-BR-HAK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="y4I-NU-mei"/>
                     </view>
                     <navigationItem key="navigationItem" id="g83-qF-ACG"/>
                 </viewController>
@@ -109,8 +108,8 @@
                     <view key="view" contentMode="scaleToFill" id="gY7-xb-Haw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EmS-fJ-7UV"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <segue destination="OIp-97-fcu" kind="custom" identifier="showDetailController1" customClass="CenterControllerSegue" customModule="MenuSlideControllerSource" id="jyF-AA-H4z"/>
@@ -129,7 +128,7 @@
                 <navigationController storyboardIdentifier="CenterNavVC" automaticallyAdjustsScrollViewInsets="NO" id="OIp-97-fcu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mal-Vk-DjV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.29733690619999997" green="0.71562594180000005" blue="0.83593016860000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -148,7 +147,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lb5-B1-daQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w0u-XP-Ycy">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.18843777979593823" green="0.18843777979593823" blue="0.18843777979593823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -179,13 +178,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="7Ob-et-6iQ"/>
                         <color key="backgroundColor" red="0.1698675617468503" green="0.21776365229327072" blue="0.45060855829653967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="162-E9-BdH" firstAttribute="centerY" secondItem="qza-c8-7so" secondAttribute="centerY" id="EbU-si-gDX"/>
                             <constraint firstItem="162-E9-BdH" firstAttribute="leading" secondItem="7Ob-et-6iQ" secondAttribute="leading" constant="10" id="SoF-cw-IQQ"/>
                             <constraint firstItem="7Ob-et-6iQ" firstAttribute="trailing" secondItem="162-E9-BdH" secondAttribute="trailing" constant="10" id="YC6-yz-Oe7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="7Ob-et-6iQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="b7v-JU-cHD"/>
                 </viewController>
@@ -199,7 +198,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pmL-HB-eVO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aRx-SD-ruF">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.34352487079870314" green="0.43241523954179245" blue="0.87153902202072542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
